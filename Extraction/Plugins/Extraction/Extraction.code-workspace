@@ -1,6 +1,14 @@
 {
     "folders": [
         {
+            "name": "Extraction",
+            "path": "D:/Github/UEFN/UEFN_Extraction/Extraction/Plugins/Extraction/Content"
+        },
+        {
+            "name": "Extraction/Assets",
+            "path": "C:/Users/user/AppData/Local/UnrealEditorFortnite/Saved/VerseProject/Extraction/Extraction-Assets"
+        },
+        {
             "name": "vproject - DO NOT MODIFY",
             "path": "C:/Users/user/AppData/Local/UnrealEditorFortnite/Saved/VerseProject/Extraction/vproject"
         },
@@ -15,10 +23,6 @@
         {
             "name": "Fortnite",
             "path": "C:/Users/user/AppData/Local/UnrealEditorFortnite/Saved/VerseProject/Extraction/Fortnite"
-        },
-        {
-            "name": "Extraction",
-            "path": "D:/Github/UEFN/UEFN_Extraction/Extraction/Plugins/Extraction/Content"
         }
     ],
     "settings": {

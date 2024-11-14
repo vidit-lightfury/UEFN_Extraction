@@ -1,0 +1,48 @@
+
+using { /Fortnite.com/Devices }
+using { /Verse.org/Simulation }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+
+# See https://dev.epicgames.com/documentation/en-us/uefn/create-your-own-device-in-verse for how to create a verse device.
+
+
+# A Verse-authored creative device that can be placed in a level
+game_manager := class(creative_device):
+
+    
+    @editable
+    ExtractionButton:button_device = button_device{}
+
+    @editable
+    ExtractItemSpawner:item_spawner_device = item_spawner_device{}
+
+    @editable
+    ExtractItemChecker: conditional_button_device = conditional_button_device{}
+
+    @editable
+    Boat : vehicle_spawner_boat_device = vehicle_spawner_boat_device{}
+
+    @editable
+    EndGameDevice : end_game_device = end_game_device{}
+
+    # Runs when the device is started in a running game
+    OnBegin<override>()<suspends>:void=
+        Print("OnBegin")
+        ExtractionButton.InteractedWithEvent.Subscribe(OnExtractionComplete)
+        Boat.AgentEntersVehicleEvent.Subscribe(OnPlayerEnterVehicle)
+    
+
+    
+    OnPlayerEnterVehicle(Agent:agent):void=
+        if(ExtractItem:=ExtractItemChecker.HasAllItems[Agent]):
+            spawn:
+                EndGame(Agent)
+
+    EndGame(Agent:agent)<suspends>:void=
+        Sleep(2.0)
+        EndGameDevice.Activate(Agent)
+
+
+    OnExtractionComplete(Agent:agent):void=
+        Print("spawner Complete")
+        ExtractItemSpawner.SpawnItem()
